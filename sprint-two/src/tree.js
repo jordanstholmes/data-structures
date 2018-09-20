@@ -25,8 +25,6 @@ treeMethods.contains = function(target) {
 // return result of checking children
   if(this.value === target) {
     return true;
-  } else if (this.children.length === 0) {
-    return false;
   } else {
     for (var i = 0; i < this.children.length; i++) {
       if (this.children[i].contains(target)) {
