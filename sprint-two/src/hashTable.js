@@ -13,10 +13,17 @@ HashTable.prototype.insert = function(k, v) {
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  //make index collision-safe
+  //get value at index
+  index = this._getCollisionSafeIndex(index, k);
+  var targetElement = this._storage.get(index);
+  return targetElement ? targetElement[1] : undefined;
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  index = this._getCollisionSafeIndex(index, k);
+  this._storage.set(index, undefined);
 };
 
 HashTable.prototype._getCollisionSafeIndex = function(index, k) {
@@ -24,12 +31,20 @@ HashTable.prototype._getCollisionSafeIndex = function(index, k) {
     //if key at index is undefined or matches k
       // return index
   //throw error, table is full  
+  for (let i = 0; i < this._limit; i++) {
+    let idxToCheck = (i + index) % this._limit;
+    let storageToCheck = this._storage.get(idxToCheck);
+    if (storageToCheck === undefined || storageToCheck[0] === k) {
+      return idxToCheck;
+    }
+  }
 };
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  Worst case, but highly unlikely, could be linear for all, but generally, constant
  */
 
 
