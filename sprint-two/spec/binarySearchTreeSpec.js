@@ -37,4 +37,35 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  it('should search and find closest value in BST', function() {
+    var shuffledNums = _.shuffle(_.range(1000000));
+    var shuffledTree = new BinarySearchTree(shuffledNums);
+    var closestNum = shuffledTree.searchClosest(39875.2);
+    expect(closestNum).to.equal(39875);
+  });
+
+  it('should search faster than array.includes', function() {
+    var shuffledNums = _.shuffle(_.range(1000000));
+    var shuffledTree = new BinarySearchTree(shuffledNums);
+
+    var start = performance.now();
+    shuffledTree.searchClosest(39875);
+    var stop = performance.now();
+
+    var treeTime = stop - start;
+
+    start = performance.now();
+    shuffledNums.includes(39875);
+    stop = performance.now();
+
+    var arrayTime = stop - start;
+
+    console.log('Arr', arrayTime, 'Tree', treeTime);
+    expect(treeTime < arrayTime).to.be.true;
+  });
+
+  
 });
+
+
