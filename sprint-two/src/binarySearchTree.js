@@ -23,43 +23,49 @@ var BinarySearchTree = function(value) {
 };
 
 
-BinarySearchTree.prototype.insert = function(thatValue) {
-/*
-if thatValue is less than this value
-  if this left is null, this left becomes a new tree(thatValue)
-  else
-    recurse on thisLeft 
-else if that value is greater than this value
-  if this right is null, this right becomes newTree(thatValue)
-  else
-    recurse on this right
-*/
-  var destinationNode;
+BinarySearchTree.prototype.insert = function(value) {
+  this._traverseTree(value, function() {
+    return new BinarySearchTree(value);
+  });
+// logarithmic time
+};
 
-  if (thatValue < this.value) {
-    destinationNode = this.left;
-  } else if (thatValue > this.value){
-    destinationNode = this.right;
+BinarySearchTree.prototype._traverseTree = function(value, cb) {
+  var directionStr;
+
+  if (value < this.value) {
+    directionStr = 'left';
+  } else if (value > this.value){
+    directionStr = 'right';
+  } else if (this.value === value) {
+    return true;
   }
 
-  // if (thatValue < this.value) {
- 
-  //   if (this.left === null) {
-  //     this.left = new BinarySearchTree(thatValue);
-  //   } else {
-  //     this.left.insert(thatValue);
-  //   }
-
-  // }
+  if (this[directionStr] === null) {
+    this[directionStr] = cb(value);
+    return false;
+  } else {
+    return this[directionStr]._traverseTree(value, cb);
+  }
+  
 
 };
 
-BinarySearchTree.prototype.contains = function(thatValue) {
-
+BinarySearchTree.prototype.contains = function(value) {
+  debugger;
+  return this._traverseTree(value, function() {return null;});
+// logarithmic time
 };
 
-BinarySearchTree.prototype.depthFirstLog = function() {
-
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+  cb(this.value);
+  if (this.left !== null) {
+    this.left.depthFirstLog(cb);
+  }
+  if (this.right !== null) {
+    this.right.depthFirstLog(cb);
+  }
+// linear
 };
 
 
