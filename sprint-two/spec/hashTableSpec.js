@@ -47,6 +47,21 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should not decrease size when same key is repeatedly removed', function() {
+    hashTable.insert('Joe', 'Perry');
+    hashTable.remove('Joe');
+    hashTable.remove('Joe');
+    hashTable.remove('Joe');
+    expect(hashTable.getSize()).to.equal(0);
+  });
+
+  it('should not increase size when a new value is added at the same key', function() {
+    hashTable.insert('Joe', 'Perry');
+    hashTable.insert('Joe', 'Ralph');
+    hashTable.insert('Joe', 'Danny');
+    expect(hashTable.getSize()).to.equal(1);
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {

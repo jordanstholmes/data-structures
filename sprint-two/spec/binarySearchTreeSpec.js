@@ -38,14 +38,14 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5, 2, 3, 7]);
   });
 
-  it('should search and find closest value in BST', function() {
+  xit('should search and find closest value in BST', function() {
     var shuffledNums = _.shuffle(_.range(1000000));
     var shuffledTree = new BinarySearchTree(shuffledNums);
     var closestNum = shuffledTree.searchClosest(39875.2);
     expect(closestNum).to.equal(39875);
   });
 
-  it('should search faster than array.includes', function() {
+  xit('should search faster than array.includes', function() {
     var shuffledNums = _.shuffle(_.range(1000000));
     var shuffledTree = new BinarySearchTree(shuffledNums);
 

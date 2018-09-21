@@ -17,6 +17,7 @@ add new tree to current tree's children
 
 */
   this.children.push(Tree(value));
+//constant time
 };
 
 treeMethods.contains = function(target) {
@@ -33,6 +34,7 @@ treeMethods.contains = function(target) {
     }
   }
   return false;
+// linear
 };
 
 

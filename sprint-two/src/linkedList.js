@@ -4,6 +4,7 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
+// constant time
     var newTail = Node(value);
 
     if (list.head === null) {
@@ -16,12 +17,14 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
+//constant time
     var result = list.head.value;
     list.head = list.head.next;
     return result;
   };
 
   list.contains = function(target) {
+// linear
     var currentNode = list.head;
 
     while (currentNode) {
@@ -38,6 +41,7 @@ var LinkedList = function() {
 };
 
 var Node = function(value) {
+//constant
   var node = {};
 
   node.value = value;
