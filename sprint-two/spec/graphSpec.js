@@ -42,7 +42,6 @@ describe('graph', function() {
     graph.addNode(3);
     graph.addEdge(3, 2);
     graph.addNode(3);
-    debugger;
     expect(graph.hasEdge(3, 2)).to.equal(true);
     expect(graph.hasEdge(2, 3)).to.equal(true);
   });
