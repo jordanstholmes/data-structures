@@ -60,5 +60,5 @@ describe('linkedList', function() {
     expect(linkedList.contains(7)).to.be.true;
   });
 
-  // add more tests here to test the functionality of linkedList
+  
 });
