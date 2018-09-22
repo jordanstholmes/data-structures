@@ -40,5 +40,15 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+  
+  it('should add a tree as another tree\'s child', function() {
+    tree.addChild(6);
+    tree.addChild(16);
+    newTree = Tree(17);
+    newTree.addChild(2);
+    newTree.addChild(3);
+    tree.addChild(newTree);
+    expect(tree.contains(3)).to.be.true;
+  });
 
 });

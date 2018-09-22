@@ -16,7 +16,11 @@ treeMethods.addChild = function(value) {
 add new tree to current tree's children
 
 */
-  this.children.push(Tree(value));
+  if (typeof value === 'object') {
+    this.children.push(value);
+  } else {
+    this.children.push(Tree(value));
+  }
 //constant time
 };
 

@@ -4,7 +4,7 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
-// constant time
+  // constant time
     var newTail = Node(value);
 
     if (list.head === null) {
@@ -16,15 +16,36 @@ var LinkedList = function() {
     }
   };
 
+  list.insert = function(value, idx) {
+    let count = 0;
+    let currentNode = list.head;
+    let nextNode;
+
+    while (count < idx) {
+      currentNode = currentNode.next;
+
+      if (currentNode === null) {
+        throw new Error('index out of range.');
+        return undefined; 
+      }
+      count++;
+    }
+  
+    nextNode = currentNode.nextNode;
+    currentNode.next = Node(value);
+    currentNode.next.next = nextNode;
+    
+  };
+
   list.removeHead = function() {
-//constant time
+  //constant time
     var result = list.head.value;
     list.head = list.head.next;
     return result;
   };
 
   list.contains = function(target) {
-// linear
+  // linear
     var currentNode = list.head;
 
     while (currentNode) {
