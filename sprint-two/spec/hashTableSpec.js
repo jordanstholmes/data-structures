@@ -97,8 +97,10 @@ describe('hashTable', function() {
   it('should not duplicate values that were added already after collision is resolved', function() {
     hashTable.insert('bat', 5);
     hashTable.insert('ct', 6);
+    hashTable.insert('John', 'Coltrane');
+    hashTable.insert('Wayne', 'Shorter');
     hashTable.remove('bat');
     hashTable.insert('ct', 6);
-    expect(hashTable.getSize()).to.equal(1);
+    expect(hashTable.getSize()).to.equal(3);
   });
 });
