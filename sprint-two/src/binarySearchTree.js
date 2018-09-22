@@ -81,7 +81,7 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
 
 BinarySearchTree.prototype.searchClosest = function(value, closestSoFar = this.value, leastDiff = Infinity) {
   //if this value === value
-    //return value
+  //return value
 //if current diff is less than least diff
   //closestsofar = this.value
   //current diff = least diff
@@ -90,7 +90,7 @@ BinarySearchTree.prototype.searchClosest = function(value, closestSoFar = this.v
   //invoke searchClosest on next node
   if (this.value === value) {
     return value;
-  };
+  }
   var currentDiff = Math.abs(value - this.value);
   if (currentDiff === leastDiff) {
     closestSoFar = Math.min(this.value, closestSoFar);

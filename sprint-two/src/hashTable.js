@@ -10,7 +10,7 @@ HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   index = this._getCollisionSafeInsertionIndex(index, k);
 
-  var valueToReturn = this._storage.get(index)
+  var valueToReturn = this._storage.get(index);
   
   if (valueToReturn === undefined || valueToReturn === null) {
     this._size++;
@@ -20,7 +20,7 @@ HashTable.prototype.insert = function(k, v) {
 
   this._storage.set(index, [k, v]);
 
-  if (this._size / this._limit > 0.75) { this._changeSize("double"); }
+  if (this._size / this._limit > 0.75) { this._changeSize('double'); }
   return valueToReturn;
   
 };
@@ -41,7 +41,7 @@ HashTable.prototype.remove = function(k) {
     this._size--;
     this._storage.set(index, null);
   }
-  if ((this._size / this._limit) < 0.25 && this._limit >= 4) { this._changeSize("halve"); }
+  if ((this._size / this._limit) < 0.25 && this._limit >= 4) { this._changeSize('halve'); }
   
   
 };
@@ -81,14 +81,10 @@ HashTable.prototype._changeSize = function(str) {
 };
 
 HashTable.prototype.getSize = function() {
-    return this._size;
+  return this._size;
 };
 
 HashTable.prototype._getCollisionSafeRetrievalIndex = function(index, k) {
-  //loop through index
-    //if key at index is undefined or matches k
-      // return index
-  //throw error, table is full  
   for (let i = 0; i < this._limit; i++) {
     let idxToCheck = (i + index) % this._limit;
     let storageToCheck = this._storage.get(idxToCheck);
@@ -99,10 +95,6 @@ HashTable.prototype._getCollisionSafeRetrievalIndex = function(index, k) {
 };
 
 HashTable.prototype._getCollisionSafeInsertionIndex = function(index, k) {
-  //loop through index
-    //if key at index is undefined or matches k
-      // return index
-  //throw error, table is full 
   var firstCheck = this._getCollisionSafeRetrievalIndex(index, k);
   if (this._storage.get(firstCheck) !== undefined && this._storage.get(firstCheck)[0] === k) {
     return firstCheck;
