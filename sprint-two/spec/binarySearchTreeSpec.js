@@ -45,7 +45,7 @@ describe('binarySearchTree', function() {
     expect(closestNum).to.equal(39875);
   });
 
-  xit('should search faster than array.includes', function() {
+  it('should search faster than array.includes', function() {
     var shuffledNums = _.shuffle(_.range(1000000));
     var shuffledTree = new BinarySearchTree(shuffledNums);
 

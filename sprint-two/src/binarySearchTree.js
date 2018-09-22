@@ -41,14 +41,6 @@ BinarySearchTree.prototype._traverseTree = function(value, cb) {
   if (directionStr === 'equal') {
     return true;
   }
-
-  // if (value < this.value) {
-  //   directionStr = 'left';
-  // } else if (value > this.value){
-  //   directionStr = 'right';
-  // } else if (this.value === value) {
-  //   return true;
-  // }
   
 
   if (this[directionStr] === null) {
@@ -113,6 +105,7 @@ BinarySearchTree.prototype.searchClosest = function(value, closestSoFar = this.v
     return closestSoFar;
   }
 };
+
 
 var binarySearchArray = function(array, value) {
   //instantiate tree based on first value

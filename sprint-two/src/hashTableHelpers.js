@@ -12,6 +12,7 @@
 //   limitedArray.get(3); // returns 'hi'
 
 var LimitedArray = function(limit) {
+  var limit = limit;
   var storage = [];
 
   var limitedArray = {};
@@ -27,6 +28,11 @@ var LimitedArray = function(limit) {
     for (var i = 0; i < storage.length; i++) {
       callback(storage[i], i, storage);
     }
+  };
+
+  limitedArray.setLimit = function(newLimit) {
+    limit = newLimit;
+    //debugger;
   };
 
   var checkLimit = function(index) {
