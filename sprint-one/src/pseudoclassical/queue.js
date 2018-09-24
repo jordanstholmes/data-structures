@@ -1,28 +1,25 @@
 var Queue = function() {
-  this.storage = {};
+  this._storage = {};
+  this._start = 0;
+  this._end = 0;
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
 };
 
 Queue.prototype.enqueue = function(val) {
-  var keys = Object.keys(this.storage);
-  var nextIdx = keys.length === 0 ? 0 : keys[keys.length - 1] + 1;
-  this.storage[nextIdx] = val;  
+  this._storage[this._end++] = val;
 };
 
 Queue.prototype.dequeue = function() {
-  var keys = Object.keys(this.storage);
-  if (keys.length === 0) {
-    return;
-  } else {
-    var firstKey = keys[0];
-    var firstVal = this.storage[firstKey];
-    delete this.storage[firstKey];
-    return firstVal;
-  }
+  var result = this._storage[this._start];
+  delete this._storage[this._start];
+  this.size() && this._start++;
+
+  return result;
+
 };
 
 Queue.prototype.size = function() {
-  return Object.keys(this.storage).length;
+  return this._end - this._start;
 };
 
