@@ -2,22 +2,25 @@ class Queue {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   constructor() {
-    this.storage = {};
+    this._storage = {};
+    this._start = 0;
+    this._end = 0;
   }
+
   enqueue(val) {
-    var keys = Object.keys(this.storage);
-    var nextKey = keys.length === 0 ? 0 : keys[keys.length - 1] + 1;
-    this.storage[nextKey] = val;
+    this._storage[this._end++] = val;
   }
+
   dequeue() {
-    var keys = Object.keys(this.storage);
-    if (keys.length === 0) { return; }
-    var firstKey = keys[0];
-    var firstVal = this.storage[firstKey];
-    delete this.storage[firstKey];
-    return firstVal; 
+    var result = this._storage[this._start];
+    delete this._storage[this._start];
+    this.size() && this._start++;
+
+    return result;
   }
+
   size() {
-    return Object.keys(this.storage).length;
+    return this._end - this._start;
   }
+
 }
